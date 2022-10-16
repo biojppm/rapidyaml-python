@@ -1,0 +1,36 @@
+# MANIFEST.in must be in root directory.
+# See https://github.com/pypa/setuptools/issues/2615
+# examples: https://www.reddit.com/r/Python/comments/40s8qw/simplify_your_manifestin_commands/
+
+prune .github
+prune bm/
+graft cpp
+prune cpp/.github
+prune cpp/.gitignore
+prune cpp/.gitmodules
+prune cpp/bm
+prune cpp/changelog
+prune cpp/doc
+prune cpp/ext/c4core/.github
+prune cpp/ext/c4core/bm
+prune cpp/ext/c4core/changelog
+prune cpp/ext/c4core/cmake/bm-xp/
+prune cpp/ext/c4core/src/c4/ext/fast_float/
+prune cpp/ext/c4core/src/c4/ext/debugbreak/test/
+prune cpp/ext/c4core/doc
+prune cpp/ext/c4core/test
+prune cpp/ext/c4core/tools
+prune cpp/img
+prune cpp/samples
+prune cpp/test
+prune cpp/tools
+prune test/
+
+global-exclude *tbump.toml
+global-exclude *.clang-tidy
+global-exclude *.git
+global-exclude *.gitignore
+global-exclude *.gitmodules
+global-exclude *.lgtm.yml
+global-exclude *.readthedocs.yaml
+global-exclude *ROADMAP.md
