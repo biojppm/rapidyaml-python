@@ -1,3 +1,21 @@
+[project]
+name = "rapidyaml"
+dynamic = ["version", "dependencies", "optional-dependencies", "license"]
+authors = [
+  { name="Joao Paulo Magalhaes", email="dev@jpmag.me" },
+]
+description = "Parse and emit YAML, and do it fast. Python wrapper for the C++ library"
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/biojppm/rapidyaml-python"
+Issues = "https://github.com/biojppm/rapidyaml-python/issues"
+
 [build-system]
 requires = [
          "setuptools>=42",
@@ -6,4 +24,7 @@ requires = [
          "wheel",
          "ninja",
          "cmake_build_extension",
-         "swig"]
+         "swig"
+]
+
+[tool.setuptools_scm]

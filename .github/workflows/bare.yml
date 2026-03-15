@@ -124,6 +124,11 @@ jobs:
       run: pip install dist/*.tar.gz
     - name: test with pytest
       run: python -m pytest -vvv test
+    - name: run benchmarks
+      run: |
+        for file in travis.yml appveyor.yml compile_commands.json ; do
+          python bm/bm_parse.py cpp/bm/cases/$file
+        done
     - name: '------------------- using setup.py'
       run: |
         rm -rf build/ dist/ || echo "no files found"
@@ -135,6 +140,11 @@ jobs:
       run: pip install dist/*.whl
     - name: test with pytest
       run: python -m pytest -vvv test
+    - name: run benchmarks
+      run: |
+        for file in travis.yml appveyor.yml compile_commands.json ; do
+          python bm/bm_parse.py cpp/bm/cases/$file
+        done
     - name: '------------------- using pip'
       run: |
         rm -rf build/ dist/ || echo "no files found"
@@ -146,6 +156,11 @@ jobs:
       run: pip install dist/*.whl
     - name: test with pytest
       run: python -m pytest -vvv test
+    - name: run benchmarks
+      run: |
+        for file in travis.yml appveyor.yml compile_commands.json ; do
+          python bm/bm_parse.py cpp/bm/cases/$file
+        done
     - name: '------------------- using pypa/build'
       run: |
         rm -rf build/ dist/ || echo "no files found"
@@ -157,6 +172,11 @@ jobs:
       run: pip install dist/*.whl
     - name: test with pytest
       run: python -m pytest -vvv test
+    - name: run benchmarks
+      run: |
+        for file in travis.yml appveyor.yml compile_commands.json ; do
+          python bm/bm_parse.py cpp/bm/cases/$file
+        done
   pywheelwin:
     if: always()
     continue-on-error: false
@@ -205,6 +225,11 @@ jobs:
       run: pip install dist/*.tar.gz
     - name: test with pytest
       run: python -m pytest -vvv test
+    - name: run benchmarks
+      run: |
+        for file in travis.yml appveyor.yml compile_commands.json ; do
+          python bm/bm_parse.py cpp/bm/cases/$file
+        done
     - name: '------------------- using setup.py'
       run: |
         rm -rf build/ dist/ || echo "no files found"
@@ -216,6 +241,11 @@ jobs:
       run: pip install dist/*.whl
     - name: test with pytest
       run: python -m pytest -vvv test
+    - name: run benchmarks
+      run: |
+        for file in travis.yml appveyor.yml compile_commands.json ; do
+          python bm/bm_parse.py cpp/bm/cases/$file
+        done
     - name: '------------------- using pip'
       run: |
         rm -rf build/ dist/ || echo "no files found"
@@ -227,6 +257,11 @@ jobs:
       run: pip install dist/*.whl
     - name: test with pytest
       run: python -m pytest -vvv test
+    - name: run benchmarks
+      run: |
+        for file in travis.yml appveyor.yml compile_commands.json ; do
+          python bm/bm_parse.py cpp/bm/cases/$file
+        done
     - name: '------------------- using pypa/build'
       run: |
         rm -rf build/ dist/ || echo "no files found"
@@ -238,3 +273,8 @@ jobs:
       run: pip install dist/*.whl
     - name: test with pytest
       run: python -m pytest -vvv test
+    - name: run benchmarks
+      run: |
+        for file in travis.yml appveyor.yml compile_commands.json ; do
+          python bm/bm_parse.py cpp/bm/cases/$file
+        done

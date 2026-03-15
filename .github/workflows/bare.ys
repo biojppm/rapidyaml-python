@@ -52,6 +52,11 @@ defn python-wheel-steps(name ext create-wheel-cmd)::
     run:: "pip install dist/*.$ext"
   - name: test with pytest
     run: python -m pytest -vvv test
+  - name: run benchmarks
+    run: |
+      for file in travis.yml appveyor.yml compile_commands.json ; do
+        python bm/bm_parse.py cpp/bm/cases/$file
+      done
 
 
 python-wheel-tests =::

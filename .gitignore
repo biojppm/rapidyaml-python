@@ -1,3 +1,6 @@
+# Generated files
+src/ryml/ryml.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

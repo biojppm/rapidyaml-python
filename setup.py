@@ -24,8 +24,7 @@ def log(msg, *args, **kwargs):
 
 def get_readme_for_python():
     with open(TOP_DIR / "README.md", "r", encoding="utf8") as fh:
-        marker = "<!-- endpythonreadme -->"  # get everything up to this tag
-        return fh.read().split(marker)[0]
+        return fh.read()
 
 
 def get_cmake_flags_environment():
@@ -133,13 +132,13 @@ setup(
     ext_modules=[ext],
     include_package_data=True,
     # Requirements
+    install_requires=['deprecation'],
     python_requires=">=3.6",
     setup_requires=[
         'setuptools_scm',
         'setuptools-git',
-        'setuptools',
+        'setuptools>=42',
     ],
-    install_requires=['deprecation'],
     # Extra arguments
     **setup_kw,
 )
