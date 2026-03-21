@@ -140,3 +140,43 @@ jobs:
     - :: python-preamble-steps
     - :: setup-env-win
     - :: python-wheel-tests
+
+
+  # experiment
+  mingw:
+    :: setup-job('bare' 'mingw')
+    name: mingw/${{matrix.name}}
+    runs-on: ${{matrix.os}}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - {std: 11, name: debug/static  , os: windows-latest, bt: Debug  , shared: OFF}
+        - {std: 20, name: release/shared, os: windows-latest, bt: Release, shared: ON }
+    steps:
+    - :: checkout-action
+    - name: gcc version
+      run: gcc --version
+    - name: config
+      run: |
+        cd cpp
+        cmake -B build/ \
+              -G "MSYS Makefiles" \
+              -DCMAKE_CXX_COMPILER=g++ \
+              -DCMAKE_C_COMPILER=gcc \
+              -DCMAKE_BUILD_TYPE=${{matrix.bt}} \
+              -DCMAKE_CXX_STANDARD=${{matrix.std}} \
+              -DBUILD_SHARED_LIBS=${{matrix.shared}} \
+              -DRYML_DEV=ON \
+              -DRYML_BUILD_BENCHMARKS=OFF
+    - name: build
+      run: |
+        cd cpp
+        cmake --build build --target ryml-test-build --config ${{matrix.bt}} --parallel --verbose
+    - name: test
+      run: |
+        cd cpp
+        source .github/setenv.sh
+        export CTEST_PARALLEL_LEVEL=`_c4getnumcores`
+        cmake --build build --target ryml-test-run --config ${{matrix.bt}}
+
