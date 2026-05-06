@@ -6,3 +6,4 @@ setuptools_scm
 setuptools-git
 deprecation
 pypi-cleanup
+pytest
