@@ -65,15 +65,15 @@ python-wheel-matrix =::
 #- ! pywhl('3.8'  38  'arm64'      'macosx_arm64'      'macos-14'         1) # disabled: https://cibuildwheel.pypa.io/en/stable/faq/#macos-building-cpython-38-wheels-on-arm64
 #- ! pywhl('3.8'  38  'universal2' 'macosx_universal2' 'macos-14'         1) # disabled: https://cibuildwheel.pypa.io/en/stable/faq/#macos-building-cpython-38-wheels-on-arm64
 
-python-wheel-matrix-legacy-2-23 =::
-#          pyv        arch         platform            os
-- ! pywhl('3.7'  37  'x86_64'     'manylinux_x86_64'  'ubuntu-22.04'     1)
-- ! pywhl('3.7'  37  'i686'       'manylinux_i686'    'ubuntu-22.04'     0)
-#- ! pywhl('3.7'  37  'x86_64'     'macosx_x86_64'     'macos-15-intel'   1)
-#          pyv        arch         platform            os
-#- ! pywhl('3.6'  36  'x86_64'     'manylinux_x86_64'  'ubuntu-20.04'     1) # setup-python 3.6 requires ubuntu 20.04
-#- ! pywhl('3.6'  36  'i686'       'manylinux_i686'    'ubuntu-20.04'     0) # setup-python 3.6 requires ubuntu 20.04
-#- ! pywhl('3.6'  36  'x86_64'     'macosx_x86_64'     'macos-15-intel'   1)
+#python-wheel-matrix-legacy-2-23 =::
+##          pyv        arch         platform            os
+#- ! pywhl('3.7'  37  'x86_64'     'manylinux_x86_64'  'ubuntu-22.04'     1)
+#- ! pywhl('3.7'  37  'i686'       'manylinux_i686'    'ubuntu-22.04'     0)
+##- ! pywhl('3.7'  37  'x86_64'     'macosx_x86_64'     'macos-15-intel'   1)
+##          pyv        arch         platform            os
+##- ! pywhl('3.6'  36  'x86_64'     'manylinux_x86_64'  'ubuntu-20.04'     1) # setup-python 3.6 requires ubuntu 20.04
+##- ! pywhl('3.6'  36  'i686'       'manylinux_i686'    'ubuntu-20.04'     0) # setup-python 3.6 requires ubuntu 20.04
+##- ! pywhl('3.6'  36  'x86_64'     'macosx_x86_64'     'macos-15-intel'   1)
 
 
 python-wheel-matrix-win =::
@@ -269,8 +269,8 @@ jobs:
 
   wheels:
     :: define-workflow-python-wheels('wheels' python-wheel-matrix setup-env '3.3.1')
-  wheels_legacy:
-    :: define-workflow-python-wheels('wheels' python-wheel-matrix-legacy-2-23 setup-env '2.23')
+  #wheels_legacy:
+  #  :: define-workflow-python-wheels('wheels' python-wheel-matrix-legacy-2-23 setup-env '2.23')
 
   wheels_win:
     :: define-workflow-python-wheels('wheels_win' python-wheel-matrix-win setup-env-win '3.3.1')
@@ -285,7 +285,7 @@ jobs:
     needs:
       - src
       - wheels
-      - wheels_legacy
+      #- wheels_legacy
       - wheels_win
       #- wheels_win_legacy
     steps:
