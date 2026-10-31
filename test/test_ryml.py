@@ -723,6 +723,17 @@ def test_parse_error_in_place_reuse(testcase, buftype):
         ryml.parse_in_place(buf, tree=tree)
 
 
+# the error reaches python as the exception only: the message is in
+# the exception, and nothing is written to the stderr of the process
+@pytest.mark.parametrize("testcase", parse_error_cases)
+def test_parse_error_writes_no_stderr(testcase, capfd):
+    with pytest.raises(ryml.ExceptionParse) as exc:
+        ryml.parse_in_arena(testcase)
+    assert exc.value.msg
+    out, err = capfd.readouterr()
+    assert err == ""
+
+
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
